@@ -1,14 +1,20 @@
-import * as React from 'react';
+import React, {FC, useState, useEffect} from 'react';
 import {ImageBackground, Text, View} from 'react-native';
-import {styles} from './style';
+import {styles} from '../../styles/sharedStyles';
 
-export type Props = {
-  totalCourses?: number;
-  totalMembers?: number;
-};
+const Notif: FC = (props: any) => {
+  const [totalCourses, setTotalCourses] = useState<number>(0);
+  const [totalMembers, setTotalMembers] = useState<number>(0);
 
-const Notif: React.FC<Props> = (props: Props) => {
-  const {totalCourses = 0, totalMembers = 0} = props;
+  useEffect(() => {
+    if (props?.route?.params?.totalCourses) {
+      setTotalCourses(props?.route?.params?.totalMembers);
+    }
+    if (props?.route?.params?.totalMembers) {
+      setTotalMembers(props?.route?.params?.totalMembers);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getCoursesCount = (): string => {
     if (totalCourses && totalCourses > 1) {

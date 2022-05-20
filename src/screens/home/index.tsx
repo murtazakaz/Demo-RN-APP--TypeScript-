@@ -1,14 +1,20 @@
-import * as React from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {ImageBackground, Text, View} from 'react-native';
-import {styles} from './style';
+import {styles} from '../../styles/sharedStyles';
 
-export type Props = {
-  totalLiveStreams?: number;
-  totalMembers?: number;
-};
+const Home: FC = (props: any) => {
+  const [totalLiveStreams, setTotalLiveStreams] = useState(0);
+  const [totalMembers, setTotalMembers] = useState(0);
 
-const Home: React.FC<Props> = (props: Props) => {
-  const {totalLiveStreams = 0, totalMembers = 0} = props;
+  useEffect(() => {
+    if (props?.route?.params?.totalLiveStreams) {
+      setTotalLiveStreams(props?.route?.params?.totalMembers);
+    }
+    if (props?.route?.params?.totalMembers) {
+      setTotalMembers(props?.route?.params?.totalMembers);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getLiveStreams = (): string => {
     if (totalLiveStreams && totalLiveStreams > 1) {

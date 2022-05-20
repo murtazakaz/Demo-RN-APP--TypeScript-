@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Platform, Text, View} from 'react-native';
-import {NavigationContainer, RouteProp} from '@react-navigation/native';
+import {ActivityIndicator, Platform} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './screens/home';
 import Notif from './screens/notif';
@@ -8,14 +8,27 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from './styles/colors';
 
 const linking = {
-    prefixes: ['demo://'],
+  prefixes: ['demoapp://'],
+  config: {
+    initialRouteName: 'NOTIF',
+    screens: {
+      HOME: {
+        path: 'HOME/:totalLiveStreams/:totalMembers',
+      },
+      NOTIF: {
+        path: 'NOTIF/:totalCourses/:totalMembers',
+      },
+    },
+  },
 };
 
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
   return (
-    <NavigationContainer linking={linking}>
+    <NavigationContainer
+      linking={linking}
+      fallback={<ActivityIndicator color="blue" size="large" />}>
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
