@@ -1,6 +1,5 @@
 import React, {FC, useState, useEffect} from 'react';
-import {ImageBackground, Text, View} from 'react-native';
-import {styles} from '../../styles/sharedStyles';
+import DetailScreen from '../../components/detailScreen';
 
 const Notif: FC = (props: any) => {
   const [totalCourses, setTotalCourses] = useState<number>(0);
@@ -29,17 +28,14 @@ const Notif: FC = (props: any) => {
     }
     return `${totalMembers} Member`;
   };
-  const {bgImage, infoContainer, title, detail} = styles;
 
   return (
-    <ImageBackground
-      source={require('../../assets/images/notifBG.png')}
-      style={bgImage}>
-      <View style={infoContainer}>
-        <Text style={title}>World</Text>
-        <Text style={detail}>{`${getCoursesCount()}  - ${getMembers()}`}</Text>
-      </View>
-    </ImageBackground>
+    <DetailScreen
+      backgroundImage={require('../../assets/images/notifBG.png')}
+      title={'World'}
+      count={getCoursesCount()}
+      memberCount={getMembers()}
+    />
   );
 };
 

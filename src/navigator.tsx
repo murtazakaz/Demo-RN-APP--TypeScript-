@@ -2,8 +2,8 @@ import * as React from 'react';
 import {ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from './screens/home';
-import Notif from './screens/notif';
+import Home from './screens/home/home';
+import Notif from './screens/notif/notif';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from './styles/colors';
 
@@ -25,13 +25,17 @@ const linking = {
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
-  const getIcon = (page: string, focused: boolean) => {
+  const getIcon = (page: string, focused: boolean): string => {
+    let icon: string = '';
     if (page === 'HOME') {
-      return focused ? 'ios-home' : 'ios-home-outline';
+      icon = focused ? 'ios-home' : 'ios-home-outline';
     } else if (page === 'NOTIF') {
-      return focused ? 'ios-notifications' : 'ios-notifications-outline';
+      icon = focused ? 'ios-notifications' : 'ios-notifications-outline';
     }
+
+    return icon;
   };
+
   return (
     <NavigationContainer
       linking={linking}
@@ -39,8 +43,13 @@ export default function AppNavigator() {
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
-            const icon = getIcon(route.name, focused);
-            <Ionicons name={icon} size={size} color={color} />;
+            return (
+              <Ionicons
+                name={getIcon(route.name, focused)}
+                size={size}
+                color={color}
+              />
+            );
           },
         })}
         tabBarOptions={{

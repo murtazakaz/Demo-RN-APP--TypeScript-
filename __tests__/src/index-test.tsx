@@ -3,8 +3,8 @@ import {render, waitFor} from '@testing-library/react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Home from '../../src/screens/home';
-import Notif from '../../src/screens/notif';
+import Home from '../../src/screens/home/home';
+import Notif from '../../src/screens/notif/notif';
 import colors from '../../src/styles/colors';
 
 const Tab = createBottomTabNavigator();

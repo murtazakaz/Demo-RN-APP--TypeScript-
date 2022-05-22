@@ -6,8 +6,8 @@ import {WINDOW_WIDTH} from '../mixins';
 interface Style {
   bgImage: ViewStyle;
   infoContainer: ViewStyle;
-  title: TextStyle;
-  detail: TextStyle;
+  titleText: TextStyle;
+  detailText: TextStyle;
 }
 
 export const styles = StyleSheet.create<Style>({
@@ -19,12 +19,12 @@ export const styles = StyleSheet.create<Style>({
     paddingTop: normalize(155),
     paddingLeft: normalize(28),
   },
-  title: {
+  titleText: {
     fontSize: normalize(60),
     fontWeight: '700',
     color: colors.primary,
   },
-  detail: {
+  detailText: {
     fontSize: normalize(12),
     fontWeight: '400',
     color: colors.primary,

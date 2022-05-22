@@ -1,6 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import {ImageBackground, Text, View} from 'react-native';
-import {styles} from '../../styles/sharedStyles';
+import DetailScreen from '../../components/detailScreen';
 
 const Home: FC = (props: any) => {
   const [totalLiveStreams, setTotalLiveStreams] = useState(0);
@@ -29,17 +28,14 @@ const Home: FC = (props: any) => {
     }
     return `${totalMembers} Member`;
   };
-  const {bgImage, infoContainer, title, detail} = styles;
 
   return (
-    <ImageBackground
-      source={require('../../assets/images/homeBG.png')}
-      style={bgImage}>
-      <View style={infoContainer}>
-        <Text style={title}>Hello</Text>
-        <Text style={detail}>{`${getLiveStreams()}  - ${getMembers()}`}</Text>
-      </View>
-    </ImageBackground>
+    <DetailScreen
+      backgroundImage={require('../../assets/images/homeBG.png')}
+      title={'Hello'}
+      count={getLiveStreams()}
+      memberCount={getMembers()}
+    />
   );
 };
 
