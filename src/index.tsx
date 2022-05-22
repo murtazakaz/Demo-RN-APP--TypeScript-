@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ActivityIndicator, Platform} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './screens/home';
@@ -25,6 +25,13 @@ const linking = {
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
+  const getIcon = (page: string, focused: boolean) => {
+    if (page === 'HOME') {
+      return focused ? 'ios-home' : 'ios-home-outline';
+    } else if (page === 'NOTIF') {
+      return focused ? 'ios-notifications' : 'ios-notifications-outline';
+    }
+  };
   return (
     <NavigationContainer
       linking={linking}
@@ -32,19 +39,8 @@ export default function AppNavigator() {
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
-            let iconName: string = '';
-
-            if (route.name === 'HOME') {
-              iconName = focused
-                ? `${Platform.OS}-home`
-                : `${Platform.OS}-home-outline`;
-            } else if (route.name === 'NOTIF') {
-              iconName = focused
-                ? `${Platform.OS}-notifications`
-                : `${Platform.OS}-notifications-outline`;
-            }
-
-            return <Ionicons name={iconName} size={size} color={color} />;
+            const icon = getIcon(route.name, focused);
+            <Ionicons name={icon} size={size} color={color} />;
           },
         })}
         tabBarOptions={{

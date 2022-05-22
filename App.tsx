@@ -9,8 +9,9 @@
  */
 
 import React from 'react';
+import {LogBox} from 'react-native';
 import AppNavigator from './src';
-
+LogBox.ignoreLogs(['EventEmitter.removeListener']);
 const App = () => {
   return <AppNavigator />;
 };
