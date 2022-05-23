@@ -7,7 +7,7 @@ const Home: FC = (props: any) => {
 
   useEffect(() => {
     if (props?.route?.params?.totalLiveStreams) {
-      setTotalLiveStreams(props?.route?.params?.totalMembers);
+      setTotalLiveStreams(props?.route?.params?.totalLiveStreams);
     }
     if (props?.route?.params?.totalMembers) {
       setTotalMembers(props?.route?.params?.totalMembers);

@@ -7,7 +7,7 @@ const Notif: FC = (props: any) => {
 
   useEffect(() => {
     if (props?.route?.params?.totalCourses) {
-      setTotalCourses(props?.route?.params?.totalMembers);
+      setTotalCourses(props?.route?.params?.totalCourses);
     }
     if (props?.route?.params?.totalMembers) {
       setTotalMembers(props?.route?.params?.totalMembers);
